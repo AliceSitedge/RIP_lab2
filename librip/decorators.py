@@ -35,3 +35,17 @@
 # test_4
 # 1
 # 2
+
+
+def print_result(func):
+    def wrapper(*args):
+        print(func.__name__)
+        return_value = func(*args)
+        if isinstance(return_value, list):
+            print('\n'.join(str(value) for value in return_value))
+        elif isinstance(return_value, dict):
+            print('\n'.join((str(key) + ' = ' + str(return_value[key])) for key in return_value.keys()))
+        else:
+            print(return_value)
+        return return_value
+    return wrapper
